@@ -18,12 +18,22 @@
 	cp -r include/GLFW/* "../../../dependencies/GL"
 	cp "src/libglfw3.a" "../../../dependencies/libs/libglfw3.a"
 	cd ../
-	
-	#curl https://bullet.googlecode.com/files/bullet-2.82-r2704.tgz - o "bullet.tgz"
-	#tar -zxvf "bullet.tgz"
-	#cd bullet
-	#cmake .
-	
+
+	# Bullet
+	curl -o bullet.tgz https://bullet.googlecode.com/files/bullet-2.82-r2704.tgz
+	tar -zxvf bullet.tgz
+	cd bullet-2.82-r2704
+	cmake . -DBUILD_EXTRAS=off -DBUILD_DEMOS=off
+	make -j5
+	cp -r "src/BulletCollision" "../../../dependencies/"
+	cp -r "src/BulletDynamics" "../../../dependencies/"
+	cp -r "src/LinearMath" "../../../dependencies/"
+	cp "src/BulletCollision/libBulletCollision.a" "../../../dependencies/libs/libBulletCollision.a"
+	cp "src/BulletDynamics/libBulletDynamics.a" "../../../dependencies/libs/libBulletDynamics.a"
+	cp "src/LinearMath/libLinearMath.a" "../../../dependencies/libs/libLinearMath.a"
+	cp "src/btBulletCollisionCommon.h" "../../../dependencies/btBulletCollisionCommon.h"
+	cp "src/btBulletDynamicsCommon.h" "../../../dependencies/btBulletDynamicsCommon.h"
+	cd ../
 
 	# GLEW
 	git clone https://github.com/nigels-com/glew.git glew
@@ -36,9 +46,11 @@
 	
 	# drawlib and lodepng
 	curl -o "drawlib.h" http://cameron.tylerkline.com/drawlib.h
+	curl -o "drawlib.cpp" http://cameron.tylerkline.com/drawlib.cpp
 	curl -o "lodepng.h" http://lpi.googlecode.com/svn/trunk/lodepng.h
 	curl -o "lodepng.cpp" http://lpi.googlecode.com/svn/trunk/lodepng.cpp
 	cp "drawlib.h" "../../dependencies/drawlib.h"
+	cp "drawlib.cpp" "../../dependencies/src/drawlib.cpp"
 	cp "lodepng.h" "../../dependencies/lodepng.h"
 	cp "lodepng.cpp" "../../dependencies/src/lodepng.cpp"
 	
