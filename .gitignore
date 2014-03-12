@@ -1,0 +1,22 @@
+# Linux, MAC and Vim stuff
+*.sw*
+*.dep*
+*.o
+*.depends
+*.old
+*.DS_Store
+
+# Executable stuff and other stuff
+bin/
+dependencies/
+tools/temp
+
+# For hidden backup files
+*~
+
+# For QT Creator
+*.creator
+*.creator.user
+*.config
+*.files
+*.includes
