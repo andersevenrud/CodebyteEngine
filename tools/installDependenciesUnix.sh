@@ -34,6 +34,14 @@
 	cp "src/btBulletCollisionCommon.h" "../../../dependencies/btBulletCollisionCommon.h"
 	cp "src/btBulletDynamicsCommon.h" "../../../dependencies/btBulletDynamicsCommon.h"
 	cd ../
+	
+	# duktape (javascript engine)
+	curl -o "duktape.tar.xz" http://www.duktape.org/duktape-0.9.0.tar.xz
+	tar -xJf duktape.tar.xz
+	cd duktape-0.9.0/src
+	gcc -c -Os -std=c99 duktape.c -lm
+	cp "duktape.o" "../../../../dependencies/duktape.o"
+	cd ../../
 
 	# GLEW
 	git clone https://github.com/nigels-com/glew.git glew
