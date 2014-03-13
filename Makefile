@@ -30,7 +30,7 @@ C_OBJS = $(shell find dependencies/src/*.cpp)
 C_OBJS += $(shell find src/*.cpp)
 
 CXX      = g++
-CXXFLAGS = -Wall $(C_INCLUDES)
+CXXFLAGS = -Wall $(C_INCLUDES) -std=c++11
 LDFLAGS  = $(C_LIBS) -DGLEW_STATIC
 
 TARGET = bin/engine
@@ -47,7 +47,7 @@ DEPS   = $(SRCS:.cpp=.depends)
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(C_LIBDIR) -o $@ $(OBJS)  $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(C_LIBDIR) -o $@ $(OBJS) dependencies/duktape.o  $(LDFLAGS)
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $< -o $@
