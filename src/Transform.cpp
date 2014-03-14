@@ -80,9 +80,9 @@ void Transform::ScaleGlobal(float x, float y, float z){
 
 glm::mat4 Transform::calcLocalModelMatrix(){
     glm::mat4 finalMat(1.0f);
-    finalMat = glm::scale(finalMat, this->scale);
     finalMat = glm::translate(finalMat, this->position);
     finalMat *= glm::toMat4(this->rotation);
+    finalMat = glm::scale(finalMat, this->scale);
     this->localModelMatrix = finalMat;
     return finalMat;
 }
