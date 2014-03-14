@@ -184,6 +184,7 @@ int main(void){
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     /* Initalize glew */
+    glewExperimental = GL_TRUE; 
     if(glewInit() != GLEW_OK){
         std::cout << "Error loading glew" << std::endl;
     }
