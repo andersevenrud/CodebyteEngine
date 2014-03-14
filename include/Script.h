@@ -23,37 +23,34 @@ freely, subject to the following restrictions:
     distribution.
 *********************************************************************************/
 
-#ifndef TEXTURE_H
-#define TEXTURE_H
+#ifndef SCRIPT_H
+#define SCRIPT_H
 #pragma once
 
 #include "Tools.h"
-#include "Shader.h"
 
-class Texture{
+class Script{
 
 // Static stuff
 private:
     static ulong nextID;
-    static std::vector<Texture*> textures;
+    static std::vector<Script*> scriptObjects;
 public:
-    static Texture* At(ulong id);
-    static Texture* At(String name);
-    static Texture* WithLocation(String location);
+    static duk_context * ctx;
+    static Script* At(ulong id);
+    static Script* At(String name);
+    static void Setup();
+    static void LoadScript(String fileLocation);
+    static void Update(); // Calls each scripts update function if it exist
     static void Cleanup();
 
 // Instance stuff
-private:
-	bool hasBeenLoaded;
 public:
     ulong id;
     String name;
-    String fileLocation;
-	GLuint textureId;
-    Texture(String name);
-	~Texture(void);
-    bool Load(String location);
-    void Bind(Shader* shader, GLuint location, GLuint textureSlot);
+    int obj_index;
+    Script(String name, String objectName);
+    ~Script(void);
 };
 
-#endif /* TEXTURE_H */
+#endif /* SCRIPT_H */

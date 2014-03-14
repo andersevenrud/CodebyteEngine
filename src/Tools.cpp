@@ -84,6 +84,11 @@ String RemoveCharToChar(String s, char start, char end){
     return s;
 }
 
+bool FileExists(String filename){
+  std::ifstream file(filename);
+  return file;
+}
+
 void Dbug(int i){
     std::cout << "Dbug: " << i << std::endl;
 }

@@ -25,15 +25,11 @@ freely, subject to the following restrictions:
 
 #include "Tools.h"
 
+#include "Script.h"
 #include "Scene.h"
-
-//#include "Node.h"
-//#include "Mesh.h"
-//#include "Shader.h"
-//#include "Texture.h"
-//#include "Material.h"
-//#include "Camera.h"
 #include "GUI.h"
+
+#include "duktape.h"
 
 bool keys[512];
 double  lastMouseX = 0.0f, lastMouseY = 0.0f,
@@ -51,6 +47,8 @@ Node     * player;
 Node     * playerCamera;
 Node     * boat;
 
+Script   * testScript;
+
 bool inBoat = true;
 
 void Setup(){
@@ -58,6 +56,13 @@ void Setup(){
         keys[i] = false;
 
     Scene::LoadMap("Resources/Maps/test.map");
+    Dbug(0);
+    Script::Setup();
+    Dbug(1);
+    Script::LoadScript("Resources/Scripts/test.js");
+    Dbug(2);
+
+    testScript = new Script("testScript", "Player");
 
     GUI::Manager::Setup(800, 600);
 
@@ -112,6 +117,7 @@ void Update(){
 
     //std::cout << player->transform.position.x << ":" << player->transform.position.y << ":" << player->transform.position.z << std::endl;
 
+    Script::Update();
     Physics::Update();
     Scene::Update();
 }
