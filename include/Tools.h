@@ -48,6 +48,7 @@ freely, subject to the following restrictions:
 #include <drawlib.h>
 #include <lodepng.h>
 #include <btBulletDynamicsCommon.h>
+#include <duktape.h>
 
 inline int bullet_btInfinityMask()
 {
@@ -93,6 +94,8 @@ StringArray SplitString(String s, String delimiter);
 String StringStrip(String s, String charsToRemove);
 
 String RemoveCharToChar(String s, char start, char end);
+
+bool FileExists(String filename);
 
 void Dbug(int i);
 
