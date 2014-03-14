@@ -1,14 +1,9 @@
 #!/bin/bash
 	
-	mkdir temp
-	cd temp
-	
-	# drawlib and lodepng
+	# get the resource package
 	curl -o "Resources.zip" http://cameron.tylerkline.com/Resources.zip
 	unzip Resources.zip
-	cp -r "Resources" "../../bin/Resources"
-	cd ../
+	cp -r "Resources" "../bin/"
 	
-	rm -Rf temp
-	
-	
+	rm -Rf Resources
+	rm -Rf Resources.zip

@@ -40,6 +40,7 @@
 	tar -xJf duktape.tar.xz
 	cd duktape-0.9.0/src
 	gcc -c -Os -std=c99 duktape.c -lm
+	cp "duktape.h" "../../../../dependencies/duktape.h"
 	cp "duktape.o" "../../../../dependencies/duktape.o"
 	cd ../../
 
@@ -65,7 +66,7 @@
 	# GLM
 	git clone https://github.com/g-truc/glm.git
 	cd glm
-	cp -r "glm" "../../../dependencies/glm"
+	cp -r "glm" "../../../dependencies/"
 	cd ../../
 	
 	rm -Rf temp
